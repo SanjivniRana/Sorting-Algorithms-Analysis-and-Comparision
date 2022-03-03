@@ -1,0 +1,266 @@
+﻿@using _5311_Project_sxr0277.Models
+@using System.Web.Helpers;
+@model CompareAlgoInput
+
+<h3>SORTING ALGORITHMS COMPARISON</h3>
+
+<div class="container">
+
+    @using (Html.BeginForm("Index", "CompareSortingAlgorithms", FormMethod.Post))
+    {
+        <form>
+            <div class="container-fluid">
+                <div class="form-group">
+                    <div class="col-12">
+                        <label>Enter the input size:</label>
+                        @Html.TextBoxFor(m => m.inputSize, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.inputSize, "Please enter the input size", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-12">
+                        <label>Enter the input string: (Please enter comma seperated input values)</label>
+                        @Html.TextBoxFor(m => m.input, new { @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <label>Select Sorting Algorithms to compare:</label>
+                <div class="form-group">
+                    <div class="row" style="margin-left:2px;">
+                        <div class="col-3">
+                            @Html.CheckBoxFor(m => m.isBubble, new { @class = "form-control" })
+                            <label class="form-check-label">Bubble Sort</label>
+                            @Html.ValidationMessageFor(m => m.isBubble, "Enter one or more sorting algorithms below", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-3">
+                            @Html.CheckBoxFor(m => m.isSelection, new { @class = "form-control" })
+                            <label class="form-check-label">Selection Sort</label>
+                        </div>
+                        <div class="col-3">
+                            @Html.CheckBoxFor(m => m.isInsertion, new { @class = "form-control" })
+                            <label class="form-check-label">Insertion Sort</label>
+                        </div>
+                        <div class="col-3">
+                            @Html.CheckBoxFor(m => m.isHeap, new { @class = "form-control" })
+                            <label class="form-check-label">Heap Sort</label>
+                        </div>
+                        <div class="col-3">
+                            @Html.CheckBoxFor(m => m.isMerge, new { @class = "form-control" })
+                            <label class="form-check-label">Merge Sort</label>
+                        </div>
+                        <div class="col-3">
+                            @Html.CheckBoxFor(m => m.isQuickPivot, new { @class = "form-control" })
+                            <label class="form-check-label">Quick Sort (Pivot)</label>
+                        </div>
+                        <div class="col-3">
+                            @Html.CheckBoxFor(m => m.isQuickMedian, new { @class = "form-control" })
+                            <label class="form-check-label">Quick Sort (Median)</label>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row" style="display:flex;margin-left:2px;">
+                    <div class="col-3">
+                        <button class="btn btn-primary" style="margin-left:5px;" type="submit" value="Submit">Submit</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary" style="margin-left:5px;color:white;">@Html.ActionLink("Reset", "Index", "CompareSortingAlgorithms", new { area = "" }, null)</button>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </form>
+    }
+
+
+    @if (Model.sortedArray1 != null || Model.sortedArray2 != null || Model.sortedArray3 != null || Model.sortedArray4 != null || Model.sortedArray5 != null || Model.sortedArray6 != null || Model.sortedArray7 != null)
+    {
+        <div class="resultrep">
+            <h2>Comparing All Algorithms</h2>
+            <br />
+            <div class="row">
+                <div class="col-6">
+                    <img src="@Url.Action("ComparisionChart")" alt="" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.sortedArray1 != null)
+    {
+        <div class="resultrep">
+            <h2>Bubble Sort</h2>
+            <div class="row">
+                <div class="col-12">
+                    <label class="resultcol">Result:</label>
+                    @Html.DisplayFor(model => model.sortedArray1)
+                </div>
+            </div>
+            <br />
+            <label class="labeldesign">Execution time(in seconds): @Html.DisplayFor(model => model.executionTimeBubble)</label>
+            <br />
+            <div class="row">
+                <div class="col-6">
+                    <img src="@Url.Action("BubbleChart")" alt="" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.sortedArray2 != null)
+    {
+        <div class="resultrep">
+            <h2>Selection Sort</h2>
+            <div class="row">
+                <div class="col-12">
+                    <label class="resultcol">Result:</label>
+                    @Html.DisplayFor(model => model.sortedArray2)
+                </div>
+            </div>
+            <br />
+            <label class="labeldesign">Execution time(in seconds): @Html.DisplayFor(model => model.executionTimeSelection)</label>
+            <br />
+            <div class="row">
+                <div class="col-6">
+                    <img src="@Url.Action("SelectionChart")" alt="" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.sortedArray3 != null)
+    {
+        <div class="resultrep">
+            <h2>Insertion Sort</h2>
+            <div class="row">
+                <div class="col-12">
+                    <label class="resultcol">Result:</label>
+                    @Html.DisplayFor(model => model.sortedArray3)
+                </div>
+            </div>
+            <br />
+            <label class="labeldesign">Execution time(in seconds):@Html.DisplayFor(model => model.executionTimeInsertion)</label>
+            <br />
+            <div class="row">
+                <div class="col-6">
+                    <img src="@Url.Action("InsertionChart")" alt="" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.sortedArray4 != null)
+    {
+        <div class="resultrep">
+            <h2>Heap Sort</h2>
+            <div class="row">
+                <div class="col-12">
+                    <label class="resultcol">Result:</label>
+                    @Html.DisplayFor(model => model.sortedArray4)
+                </div>
+            </div>
+            <br />
+            <label class="labeldesign">Execution time(in seconds): @Html.DisplayFor(model => model.executionTimeHeap)</label>
+            <br />
+            <div class="row">
+                <div class="col-6">
+                    <img src="@Url.Action("HeapChart")" alt="" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.sortedArray5 != null)
+    {
+        <div class="resultrep">
+            <h2>Merge Sort</h2>
+            <div class="row">
+                <div class="col-12">
+                    <label class="resultcol">Result:</label>
+                    @Html.DisplayFor(model => model.sortedArray5)
+                </div>
+            </div>
+            <br />
+            <label class="labeldesign">Execution time(in seconds): @Html.DisplayFor(model => model.executionTimeMerge)</label>
+            <br />
+            <div class="row">
+                <div class="col-6">
+                    <img src="@Url.Action("MergeChart")" alt="" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.sortedArray6 != null)
+    {
+        <div class="resultrep">
+            <h2>Quick Sort Using Pivot</h2>
+            <div class="row">
+                <div class="col-12">
+                    <label class="resultcol">Pivot Used(last element):</label>
+                    @Html.DisplayFor(model => model.pivotUsed)
+                </div>
+                <div class="col-12">
+                    <label class="resultcol">Result:</label>
+                    @Html.DisplayFor(model => model.sortedArray6)
+                </div>
+            </div>
+            <br />
+            <label class="labeldesign">Execution time(in seconds): @Html.DisplayFor(model => model.executionTimeQuickPivot)</label>
+            <br />
+            <div class="row">
+                <div class="col-6">
+                    <img src="@Url.Action("QuickPivotChart")" alt="" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.sortedArray7 != null)
+    {
+        <div class="resultrep">
+            <h2>Quick Sort Using Median</h2>
+            <div class="row">
+                <div class="col-12">
+                    <label class="resultcol">Result:</label>
+                    @Html.DisplayFor(model => model.sortedArray7)
+                </div>
+            </div>
+            <br />
+            <label class="labeldesign">Execution time(in seconds):@Html.DisplayFor(model => model.executionTimeQuickMedian)</label>
+            <br />
+            <div class="row">
+                <div class="col-6">
+                    <img src="@Url.Action("QuickMedianChart")" alt="" />
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<style>
+    a {
+        color: #ffffff !important;    
+    }
+    h3 {
+        margin-bottom: 40px;
+        margin-left: 30px;
+    }
+    .form-control {
+        width:auto;
+    }
+    .resultrep {
+        width:70%;
+        margin-left:2px;
+    }
+    .labeldesign {
+        float: right;
+        margin-right: -100px;
+        margin-top: 85px;
+    }
+    .resultcol {
+        margin-left: 15px;
+    }
+</style>
+

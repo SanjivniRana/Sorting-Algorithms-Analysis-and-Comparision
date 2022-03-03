@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        @*<link href="css/bootstrap.min.css" rel="stylesheet">*@
+
+        <title>sxr0277</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <style>
+        body {
+            border:none;
+        }
+        .topnav {
+
+          overflow: hidden;
+          text-align: center;
+          background-color: #343a40;
+          position: fixed;
+          top: 0;
+          width: 100%; 
+        }
+        .topnav label {
+          color: #ffffff;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+        .col-lg-2 {
+          height: 100%;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #343a40;
+          overflow-x: hidden;
+          padding-top: 70px;
+        }
+        .col-lg-2 a {
+          padding: 6px 8px 6px 16px;
+          text-decoration: none;
+          font-size: 18px;
+          color: #ffffff;
+          display: block;
+        }
+        .col-lg-2 a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+        .col-lg-10 {
+        margin-left: 260px;
+        margin-top: 30px;
+        }
+        .form-check-label {
+            margin-top: 10px;
+            margin-left: 12px;
+        }
+        .col-3 {
+            display:flex;
+        }
+    </style>
+
+    <body>
+        <div class="topnav"">
+          <label>5311 Project By Sanjivni Rana (1001820277)</label>
+        </div>
+        <div class="container-fluid">
+            <div class="row" style="height:100vh;margin-top:70px">
+                <div class="col-lg-2">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                            <li class="nav-item">@Html.ActionLink("Compare Algorithms", "Index", "CompareSortingAlgorithms", new { area = "" }, null)</li>
+                            <li class="nav-item">@Html.ActionLink("Bubble Sort", "BubbleSort", "BubbleSort", new { area = "" }, null)</li>
+                            <li class="nav-item">@Html.ActionLink("Selection Sort", "SelectionSort", "SelectionSort", new { area = "" }, null)</li>
+                            <li class="nav-item">@Html.ActionLink("Insertion Sort", "InsertionSort", "InsertionSort", new { area = "" }, null)</li>
+                            <li class="nav-item">@Html.ActionLink("Heap Sort", "HeapSort", "HeapSort", new { area = "" }, null)</li>
+                            <li class="nav-item">@Html.ActionLink("Merge Sort", "MergeSort", "MergeSort", new { area = "" }, null)</li>
+                            <li class="nav-item">@Html.ActionLink("Quick Sort Using Pivot", "QuickSortPivot", "QuickSort", new { area = "" }, null)</li>
+                            <li class="nav-item">@Html.ActionLink("Quick Sort Using Median", "QuickSortMedian", "QuickSort", new { area = "" }, null)</li>
+                        </ul>
+                </div>
+                <div class="col-lg-10">
+                    @RenderBody()
+                    @Scripts.Render("~/bundles/jquery")
+                    @RenderSection("scripts", required: false)        
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,86 @@
+﻿
+@using _5311_Project_sxr0277.Models
+@using System.Web.Helpers;
+@model QuickSortModel
+
+<div class="container">
+    <h2>Quick Sort Using Pivot</h2>
+    @using (Html.BeginForm("QuickSortPivot", "QuickSort", FormMethod.Post))
+    {
+        <div class="container-fluid">
+            <div class="form-group">
+                <div class="col-12">
+                    <label>Enter the input size:</label>
+                    @Html.TextBoxFor(m => m.QuickInputSize, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.QuickInputSize, "Please enter the input size", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-12">
+                    <label>Enter the input string: (Please enter comma seperated input values)</label>
+                    @Html.TextBoxFor(m => m.QuickPivotInput, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.QuickPivotInput, "Please enter the input values", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="buttonrow" style="display:flex;">
+                <div class="col-3">
+                    <button class="btn btn-primary" style="margin-left:5px;" type="submit" value="Submit">Submit</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-primary" style="margin-left:5px;">@Html.ActionLink("Reset", "BubbleSort", "BubbleSort", new { area = "" }, null)</button>
+                </div>
+            </div>
+            <br />
+        </div>
+    }
+
+    @if (Model.QuickPivotSortedArray != null)
+    {
+        <div>
+            <div class="row">
+                <div class="col-12">
+                    <label class="resultcol2">Pivot Used(last element):</label>
+                    @Html.DisplayFor(model => model.QuickPivotUsed)
+                </div>
+                <div class="col-12">
+                    <label class="resultcol2">Result:</label>
+                    @Html.DisplayFor(model => model.QuickPivotSortedArray)
+                </div>
+            </div>
+            <br />
+            <label class="labeldesign2">Execution time(in seconds): @Html.DisplayFor(model => model.QuickPivotTime)</label>
+            <br />
+            <div class="row">
+                <div class="col-6">
+                    <img src="@Url.Action("PivotChart")" alt="" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    a {
+        color: #ffffff !important;    
+    }
+    h2 {
+        margin-bottom: 40px;
+        margin-left: 15px;
+    }
+    .form-control {
+        width:auto;
+    }
+    buttonrow {
+        margin-left: 5px;    
+    }
+    .labeldesign2 {
+        float: right;
+        margin-right: 240px;
+        margin-top: 85px;
+    }
+    .resultcol2 {
+        margin-left: 35px;
+        margin-top: 20px;
+    }
+</style>
